@@ -1,0 +1,108 @@
+<% include ../views/partials/header %>
+<script
+  src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+  integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+  crossorigin=""
+></script>
+<script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
+<link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css"/>
+<div class="card" style="width: 18rem">
+  <img class="card-img-top" src="<%=image%>" alt="Card image cap" />
+  <div class="card-body">
+    <h3 class="card-title"><%= name%></h3>
+    <h6 class="card-subtitle mb-2 text-muted"><%= type%></h6>
+    <h7 class="card-subtitle mb-2 text-muted"><%= workingHours%></h7>
+    <h7 class="card-subtitle mb-2 text-muted"><%= address%></h7>
+    <p class="card-text"><%= webLocation%></p>
+  </div>
+</div>
+<br />
+<h3>Art located in this museum</h3>
+<div class="row">
+  <% nizDela.forEach(function(piece){ %>
+  <div class="col-sm-2">
+    <div class="card" style="width: 18rem">
+      <img class="card-img-top" src="<%=piece.image%>" alt="Card image cap" />
+      <div class="card-body">
+        <a href="/piece/<%=piece.id%>"><%=piece.name%></a>
+        <h6 class="card-subtitle mb-2 text-muted"><%= piece.author%></h6>
+        <h6 class="card-subtitle mb-2 text-muted"><%= piece.type%></h6>
+      </div>
+    </div>
+  </div>
+  <%}); %>
+</div>
+<br/>
+<h3>View it on a map</h3>
+<style>
+    #map {
+        width: 900px;
+        height:400px;
+    }
+</style>    
+<br/>
+<div id="map"></div>       
+<script type="text/javascript">
+  window.onload = function() {
+    L.mapquest.key = 'xZkpUhDeKCi3xZfhJVuTc52uc7s6tjN9';
+
+    L.mapquest.geocoding().geocode('<%= address%>', createMap);
+
+    function createMap(error, response) {
+      var location = response.results[0].locations[0];
+      var latLng = location.displayLatLng;
+      var map = L.mapquest.map('map', {
+        center: latLng,
+        layers: L.mapquest.tileLayer('map'),
+        zoom: 14
+      });
+      var marker = L.marker(latLng).addTo(map);
+    }
+
+  }
+</script>
+
+
+<br />
+  <h3>Museums that are near by</h3>
+  <div class="row">
+    <% nizBliskih.forEach(function(bliski){ %>
+    <div class="col-sm-2">
+      <div class="card" style="width: 18rem">
+        <img
+          class="card-img-top"
+          src="<%=bliski.image%>"
+          alt="Card image cap"
+        />
+        <div class="card-body"></div>
+        <h4 class="card-title"><%= bliski.name%></h4>
+      </div>
+    </div>
+    <%}); %>
+  </div>
+  <br />
+  <div class="col-lg-4 col-md-5 col-sm-4">
+    <form method="POST" action="/museum/add">
+      <div class="form-group">
+        <h4>Leave a comment</h4>
+        <label for="name">Name</label>
+        <input type="text" name="name" id="fullname" class="form-control" />
+        <label for="message">Message</label>
+        <textarea
+          name="msg"
+          id=""
+          msg
+          cols="30"
+          rows="5"
+          class="form-control"
+        ></textarea>
+      </div>
+      <input
+        type="submit"
+        value="Add a comment"
+        class="btn btn-primary btn-sm"
+      />
+    </form>
+  </div>
+  <% include ../views/partials/footer %>
+</br.>
