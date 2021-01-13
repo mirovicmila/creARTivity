@@ -6,13 +6,26 @@
 <script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-routing.js?key=S8d7L47mdyAG5nHG09dUnSPJjreUVPeC"></script>
 <script src="https://api.mqcdn.com/sdk/place-search-js/v1.0.0/place-search.js"></script>
 <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/place-search-js/v1.0.0/place-search.css"/>
-<h3>Museums</h3>
+
+<div class="container-lg container-fluid">
+  <div class="d-inline-flex justify-content-around">
+    <h1 class="display-1 align-self-center">Museums</h1>
+    <img src="https://i.imgur.com/Xc3EV8o.png" class="img-fluid w-50 p-3" alt="Responsive image">
+  </div>
+
+<p class="lead">
+  Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus.
+</p>
+
 <div class="row">
   <% muzeji.forEach(function(muzej){ %>
-  <div class="col-md-2">
-    <div class="card">
-      <i class="fa fa-university"></i
-      ><a href="/museum/<%=muzej.id%>"><%= muzej.name %></a>
+  <div class="card text-white bg-info mb-3 mx-auto" style="width: 18rem;">
+    <div class="card-body">
+      <i class="fa fa-university"></i>
+      <h5 class="card-title"><%= muzej.name %></h5>
+      <h6 class="card-subtitle mb-2 text-muted"><%= muzej.address %></h6>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="/museum/<%=muzej.id%>"><%= muzej.name %></a>
     </div>
   </div>
   <% }) %>
@@ -44,7 +57,8 @@
       <button  type="submit">Get Route</button>
   </form>
 </div>
-<div id="map"></div>       
+<div id="map"></div>  
+</div>     
 <script>
 var map = L.map('map', {
   //center: latLng,
