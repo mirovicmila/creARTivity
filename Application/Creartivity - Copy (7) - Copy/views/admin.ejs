@@ -1,0 +1,236 @@
+<% include ../views/partials/header %>
+<h3>Add a new Museum</h3>
+<a
+  class="btn btn-primary"
+  data-bs-toggle="collapse"
+  href="#addmuseum"
+  role="button"
+  aria-expanded="false"
+  aria-controls="addmuseum"
+  >Add a new Museum</a
+>
+<div class="collapse" id="addmuseum">
+  <div class="card">
+    <form method="POST" action="/museum/add">
+      <input type="text" name="id" placeholder="Id" hidden />
+      <input type="text" name="name" placeholder="Name" required />
+      <br />
+      <input type="text" name="ticketPrice" placeholder="Ticket price" required />
+      <br />
+      <input type="text" name="type" placeholder="Type of museum" required />
+      <br />
+      <input type="text" name="webLocation" placeholder="Web Location" required />
+      <br />
+      <input type="text" name="workingHours" placeholder="Working hours" required />
+      <br />
+      <input type="text" name="address" placeholder="Museum location" required />
+      <br />
+      <input type="text" name="image" placeholder="Thumbnail image" required />
+      <br />
+      <input
+        type="submit"
+        value="Add Museum"
+        class="btn btn-outline-dark btn-sm"
+      />
+    </form>
+  </div>
+</div>
+<br/>
+
+<h3>Update Museum values</h3>
+<br/>
+<a
+  class="btn btn-primary"
+  data-bs-toggle="collapse"
+  href="#updatemuseum"
+  role="button"
+  aria-expanded="false"
+  aria-controls="updatemuseum"
+  >Update a Museum</a
+>
+<br/>
+<div class="collapse" id="updatemuseum">
+  <div class="card">
+    <form method="POST" action="/museum/edit">
+      <input type="text" name="nameUpdate" placeholder="Choose a museum" id="nameUpdate" />
+      <br/>
+      <input type="text" name="name" placeholder= " New Name" />
+      <br />
+      <input type="text" name="ticketPrice" placeholder=" New Ticket price" />
+      <br />
+      <input type="text" name="type" placeholder=" New Type of museum" />
+      <br />
+      <input type="text" name="webLocation" placeholder="New Web Location" />
+      <br />
+      <input type="text" name="workingHours" placeholder="New Working hours" />
+      <br />
+      <input type="text" name="address" placeholder="New Museum location" />
+      <br />
+      <input type="text" name="image" placeholder="New Thumbnail Image" />
+      <br />
+      <br />
+      <input
+        type="submit"
+        value="Update Museum"
+        class="btn btn-outline-dark btn-sm"
+      />
+    </form>
+</div>
+</div>
+<br/>
+<br/>
+    <form method="DELETE" action="/museum/:id">
+      <input
+        type="submit"
+        value="Delete Museum"
+        class="btn btn-danger btn-sm"
+      />
+    </form>
+    <h3>Add a new Piece</h3>
+    <a
+      class="btn btn-primary"
+      data-bs-toggle="collapse"
+      href="#addpiece"
+      role="button"
+      aria-expanded="false"
+      aria-controls="addpiece"
+      >Add a new Piece</a
+    >
+    <div class="collapse" id="addpiece">
+      <div class="card">
+        <form method="POST" action="/piece/add">
+          <input type="text" name="id" placeholder="Id" hidden />
+          <input type="text" name="name" placeholder="Name" required />
+          <br />
+          <input type="text" name="author" placeholder="Author" required />
+          <br />
+          <input type="text" name="type" placeholder="Type of art" required />
+          <br />
+          <input type="text" name="description" placeholder="Desription" required />
+          <br />
+          <input
+            type="text"
+            name="link"
+            placeholder="Link for augmented reality"
+          />
+          <br />
+          <input type="text" name="image" placeholder="Image" />
+          <br />
+          <input
+            type="submit"
+            value="Add Piece of Art"
+            class="btn btn-outline-dark btn-sm"
+          />
+        </form>
+      </div>
+    </div>
+    <h3>Update Piece values</h3>
+    <a
+      class="btn btn-primary"
+      data-bs-toggle="collapse"
+      href="#updatepiece"
+      role="button"
+      aria-expanded="false"
+      aria-controls="updatepiece"
+      >Update a Piece</a
+    >
+    <div class="collapse" id="updatepiece">
+      <div class="card">
+        <form method="PUT" action="/piece/edit">
+          <input type="text" name="name" placeholder="Name"  />
+          <br />
+          <input type="text" name="type" placeholder="Type of art"  />
+          <br />
+          <input type="text" name="author" placeholder="Piece author" />
+          <br />
+          <input type="text" name="description" placeholder="Description"  />
+          <br />
+          <input
+            type="text"
+            name="link"
+            placeholder="Link for augmented reality"
+          />
+          <br />
+          <input type="text" name="image" placeholder="Image" />
+          <br />
+          <input
+            type="submit"
+            value="Update Piece of Art"
+            class="btn btn-outline-dark btn-sm"
+          />
+        </form>
+      </div>
+    </div>
+<br/>
+<br/>
+    <form method="DELETE" action="/piece/:id">
+      <input type="submit" value="Delete Piece" class="btn btn-danger btn-sm" />
+    </form>
+    <h3>Add piece to a museum</h3>
+    <form method="POST" action="/museumpiece/connect">
+      <input type="text" name="nameM" placeholder="Museum name" required />
+      <br />
+      <input type="text" name="nameP" placeholder="Piece name" required />
+      <br />
+      <input
+        type="submit"
+        value="Add Piece of Art"
+        class="btn btn-outline-dark btn-sm"
+      />
+    </form>
+    <h3>Add a new Exhibit</h3>
+    <a
+      class="btn btn-primary"
+      data-bs-toggle="collapse"
+      href="#addexhibit"
+      role="button"
+      aria-expanded="false"
+      aria-controls="addexhibit"
+      >Add a new Exhibit</a
+    >
+    <div class="collapse" id="addexhibit">
+      <div class="card">
+        <form method="POST" action="/exhibit/add">
+          <input type="text" name="name" placeholder="Name" required />
+          <br />
+          <input type="text" name="duration" placeholder="Duration" required/>
+          <br />
+          <input type="text" name="description" placeholder="Desription" required />
+          <br />
+          <input type="text" name="image" placeholder="Image" required />
+          <br />
+          <input
+            type="submit"
+            value="Add Exhibit"
+            class="btn btn-outline-dark btn-sm"
+          />
+        </form>
+      </div>
+    </div>
+    <h3>Add museum exhibit</h3>
+    <form method="POST" action="/museumexhibit/connect">
+      <input type="text" name="nameM" placeholder="Museum name" required />
+      <br />
+      <input type="text" name="nameE" placeholder="Exhibit name" required />
+      <br />
+      <input
+        type="submit"
+        value="Add Exhibit"
+        class="btn btn-outline-dark btn-sm"
+      />
+    </form>
+
+    <h3>Add distance beteween museums</h3>
+    <form method="POST" action="/museumtomuseum/connectmuseums">
+      <input type="text" name="name1" placeholder="Start museum" required />
+      <input type="text" name="name2" placeholder="End museum" required/>
+      <input type="text" name="distance" placeholder="Distance" required/>
+      <input
+        type="submit"
+        value="Add distance"
+        class="btn btn-outline-dark btn-sm"
+      />
+    </form>
+    <% include ../views/partials/footer %>
+  </div>
+</div>
