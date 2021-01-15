@@ -1,0 +1,139 @@
+<% include ../views/partials/header %>
+
+<div class="row position-relative izlozbazasvetli">
+  <div class="col-md-6 ">
+    <img src="<%=image%>" class="w-100" alt="...">
+  </div>
+  <div class="col-md-6 position-static p-4 pl-md-0">
+    <h3 class="display-5"><%= name%></h3>
+    <h6 class="mb-2 text-muted lead" hidden><%= id%></h6>
+    <h6 class="mb-2 text-muted lead">Author: <%= author%></h6>
+    <h7 class="mb-2 text-muted lead">Type: <%= type%></h7>
+    <br />
+    <br />
+    <p class="card-text"><%= description%></p>
+    <button class="btn btn-info"><a href="<%= link%>" ><i class="fa fa-external-link" aria-hidden="true"></i>
+      See it in augmented reality</a></button>
+  </div>
+</div>
+
+<div class="card m-4 p-4 w-50 bg-light" id="loginforma">
+  <p class="lead">To update or remove a piece you need autorization... </p>
+<form>
+  <div class="form-group">
+    <label for="adminemail">Email address</label>
+    <input type="email" class="form-control" id="adminemail" aria-describedby="emailHelp" placeholder="Enter email" required>
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="adminpassword">Password</label>
+    <input type="password" class="form-control" id="adminpassword" placeholder="Password" required>
+  </div>
+  <br />
+  <button id="logindugme" class="btn btn-primary">Submit</button>
+</form>
+</div>
+
+<div class="w-50 d-flex flex-row justify-content-center">
+<div id="updatedelete" class="m-5 p-5  border border-success">
+<div class="container container-fluid"> 
+<h3 class="lead">Update Piece values</h3>
+<br />
+    <a
+      class="btn btn-primary"
+      data-bs-toggle="collapse"
+      href="#updatepiece"
+      role="button"
+      aria-expanded="false"
+      aria-controls="updatepiece"
+      >Update a Piece</a
+    >
+    <div class="collapse" id="updatepiece">
+      <div class="card">
+        <form method="POST" action="/piece/edit">
+          <input type="text" name="id" placeholder="Id" value="<%= id%>" hidden />
+          <input type="text" name="name" placeholder="Name" value="<%= name%>" />
+          <br />
+          <input type="text" name="type" placeholder="Type of art" value="<%= type%>" />
+          <br />
+          <input type="text" name="author" placeholder="Piece author" value="<%= author%>"/>
+          <br />
+          <input type="text" name="description" placeholder="Description" value="<%= description%>" />
+          <br />
+          <input type="text" name="link" placeholder="Link" value ="<%= link%>" />
+          <br />
+          <input type="text" name="image" placeholder="<%= image%>" value="<%= image%>" />
+          <br />
+          <input
+            type="submit"
+            value="Update Piece of Art"
+            class="btn btn-outline-dark btn-sm"
+          />
+        </form>
+      </div>
+    </div>
+    </div>
+    <hr />
+    <br />
+    <div class="container container-fluid">
+    <form action="/" method="DELETE">
+      <h3 class="lead">Remove a Piece</h3>
+      <label name="id" data-test="<%= id%>" id="idid" hidden><%=id%></label>
+      <br />
+      <button type="submit" id="delete-button" class="btn btn-danger btn-sm">Delete</button>
+    </form>
+    </div>
+  </div>
+  </div>
+  <script>
+    var login = document.getElementById("loginforma");
+    var update = document.getElementById("updatedelete");
+    update.hidden = true;
+
+    var btn = document.getElementById("logindugme");
+
+    btn.onclick = () => {
+      if ((document.getElementById("adminemail").value == "admin@gmail.com" ) && (document.getElementById("adminpassword").value == "admin"))
+      {
+        update.hidden= false;
+        login.parentNode.removeChild(login);
+      }
+      else
+      {
+        alert("Wrong password or email address!");
+      }
+    }
+  </script>
+
+<script>
+var deleteButton = document.querySelector('#delete-button');
+deleteButton = document.getElementById("delete-button");
+console.log("delete btn: ",deleteButton);
+var idd = document.getElementById("idid").dataset.test;
+console.log("idid:", idd);
+deleteButton.addEventListener('click', _ => {
+// fetch('/piece/'+ idd, {
+//   method: 'delete',
+//   mode: 'cors',
+//   redirect: 'follow'
+// });
+var p = confirm('Are you sure you want to delete this?');
+console.log("p", p);
+ if (p == true) 
+  {
+     //window.location.href("/");
+      fetch('/piece/'+ idd, {
+        method: 'delete',
+        mode: 'cors',
+        redirect: 'follow'
+    });
+  } 
+  else 
+  {
+    txt = "You pressed Cancel!"; 
+    console.log(txt); 
+  }
+});
+
+</script>
+<% include ../views/partials/footer %>

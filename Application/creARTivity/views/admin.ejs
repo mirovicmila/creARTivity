@@ -1,0 +1,302 @@
+<% include ../views/partials/header %>
+
+
+<div id="loginforma" class="card d-flex flex-column m-4 p-4">
+<form>
+  <div class="form-group">
+    <label for="adminemail">Email address</label>
+    <input type="email" class="form-control" id="adminemail" aria-describedby="emailHelp" placeholder="Enter email" required>
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="adminpassword">Password</label>
+    <input type="password" class="form-control" id="adminpassword" placeholder="Password" required>
+  </div>
+  <button id="adminbtn" class="btn btn-primary">Submit</button>
+</form>
+</div>
+
+<div id="velikidiv">
+<div class="container-lg container-fluid">
+<br/>
+<div class="d-flex flex-row justify-content-around">
+  <div class="d-flex flex-column mr-4 p-3 bg-info">
+<h3 class="">Add a new Museum</h3>
+<a
+  class="btn btn-primary m-3"
+  data-bs-toggle="collapse"
+  href="#addmuseum"
+  role="button"
+  aria-expanded="false"
+  aria-controls="addmuseum"
+  ><i class="fa fa-plus-circle" aria-hidden="true"></i>
+  </a
+>
+<div class="collapse" id="addmuseum">
+  <div class="card d-flex flex-column align-items-center p-3">
+    <form method="POST" action="/museum/add">
+      <input type="text" name="id" placeholder="Id" hidden />
+      <input type="text" name="name" placeholder="Name" required />
+      <br />
+      <input type="text" name="ticketPrice" placeholder="Ticket price" required />
+      <br />
+      <input type="text" name="type" placeholder="Type of museum" required />
+      <br />
+      <input type="text" name="webLocation" placeholder="Web Location" required />
+      <br />
+      <input type="text" name="workingHours" placeholder="Working hours" required />
+      <br />
+      <input type="text" name="address" placeholder="Museum location" required />
+      <br />
+      <input type="text" name="image" placeholder="Thumbnail image" required />
+      <br />
+      <input type="text" name="video" placeholder="Video link" required />
+      <br />
+      <input
+        type="submit"
+        value="Add Museum"
+        class="btn btn-outline-dark btn-sm"
+      />
+    </form>
+  </div>
+</div>
+</div>
+
+<br/>
+<div class="d-flex flex-column bg-info p-3">
+    <h3 class="">Add a new Piece</h3>
+    <a
+      class="btn btn-primary m-3"
+      data-bs-toggle="collapse"
+      href="#addpiece"
+      role="button"
+      aria-expanded="false"
+      aria-controls="addpiece"
+      ><i class="fa fa-plus-circle" aria-hidden="true"></i>
+      </a
+    >
+    <div class="collapse" id="addpiece">
+      <div class="card d-flex flex-column align-items-center p-3">
+        <form method="POST" action="/piece/add">
+          <input type="text" name="id" placeholder="Id" hidden />
+          <input type="text" name="name" placeholder="Name" required />
+          <br />
+          <input type="text" name="author" placeholder="Author" required />
+          <br />
+          <input type="text" name="type" placeholder="Type of art" required />
+          <br />
+          <input type="text" name="description" placeholder="Desription" required />
+          <br />
+          <input
+            type="text"
+            name="link"
+            placeholder="Link for augmented reality"
+            required />
+          
+          <br />
+          <input type="text" name="image" placeholder="Image" required />
+          <br />
+          <input
+            type="submit"
+            value="Add Piece of Art"
+            class="btn btn-outline-dark btn-sm"
+          />
+        </form>
+      </div>
+    </div>
+    </div>
+<br/>
+<div class="d-flex flex-column p-3 bg-info">
+    <h3 class="">Add a new Exhibit</h3>
+    <a
+      class="btn btn-primary m-3"
+      data-bs-toggle="collapse"
+      href="#addexhibit"
+      role="button"
+      aria-expanded="false"
+      aria-controls="addexhibit"
+      ><i class="fa fa-plus-circle" aria-hidden="true"></i>
+      </a
+    >
+    <div class="collapse" id="addexhibit">
+      <div class="card d-flex flex-column align-items-center p-3">
+        <form method="POST" action="/exhibit/add">
+          <input type="text" name="name" placeholder="Name" required />
+          <br />
+          <input type="text" name="duration" placeholder="Duration" required/>
+          <br />
+          <input type="text" name="description" placeholder="Desription" required />
+          <br />
+          <input type="text" name="image" placeholder="Image" required />
+          <br />
+          <input
+            type="submit"
+            value="Add Exhibit"
+            class="btn btn-outline-dark btn-sm"
+          />
+        </form>
+        </div>
+      </div>
+    </div>
+    </div>
+
+<div class="m-4 p-4 border border-primary">
+  <h3 class="display-5">Add piece to a museum</h3>
+
+    <form method="POST" action="/museumpiece/connect">
+      <div class="d-flex flex-column ">
+      <div class="d-flex flex-row justify-content-center">
+      <select class="form-control form-control-sm" type="search" name="nameM" class="input" placeholder="Choose a museum" required>
+        <option selected>Choose a museum</option>
+        <% muzeji.forEach(function(muzej){ %>
+            <option><%= muzej.name%></option>
+          <% }) %>
+      </select>
+      <!-- <input type="text" name="nameM" placeholder="Museum name" required /> -->
+      <i class="fa fa-long-arrow-left align-self-center" aria-hidden="true"></i>
+      <select class="form-control form-control-sm" type="search" name="nameP" class="input" placeholder="Choose a piece" required>
+        <option selected>Choose a piece</option>
+        <% dela.forEach(function(delo){ %>
+            <option><%= delo.name%></option>
+          <% }) %>
+      </select>
+      </div>
+      <!-- <input type="text" name="nameP" placeholder="Piece name" required/> -->
+      <br />
+      <input
+        type="submit"
+        value="Add Piece of Art"
+        class="btn btn-info btn-sm"
+      />
+    </div>
+    </form>
+  </div>
+<div class="border border-success m-4 p-4">
+    <h3 class="display-5">Add museum exhibit</h3>
+
+    <form method="POST" action="/museumexhibit/connect">
+      <div class="d-flex flex-column">
+      <div class="d-flex flex-row justify-content-center">
+      <select class="form-control form-control-sm" type="search" name="nameM" class="input" placeholder="Museum name" required>
+        <option selected>Choose a museum</option>
+        <% muzeji.forEach(function(muzej){ %>
+            <option><%= muzej.name%></option>
+          <% }) %>
+      </select>
+      <!-- <input type="text" name="nameM" placeholder="Museum name" required /> -->
+      <i class="fa fa-long-arrow-left align-self-center" aria-hidden="true"></i>
+      <select class="form-control form-control-sm" type="search" name="nameE" class="input" placeholder="Exhibit name" required>
+        <option selected>Choose a museum</option>
+        <% izlozbe.forEach(function(izlozba){ %>
+            <option><%= izlozba.name%></option>
+          <% }) %>
+      </select>
+      <!-- <input type="text" name="nameE" placeholder="Exhibit name" required /> -->
+      </div>
+      <br/>
+      <input
+        type="submit"
+        value="Add Exhibit"
+        class="btn btn-success btn-sm"
+      />
+    </div>
+    </form>
+</div>
+
+<div class="border border-primary m-4 p-4">
+    <h6 class="display-5">Add distance beteween museums</h6>
+    <form method="POST" action="/museumtomuseum/connectmuseums">
+      <div class="d-flex flex-column">
+        <div class="d-flex flex-row justify-content-center">
+          <select class="form-control form-control-sm" type="search" name="name1" class="input" placeholder="Start museum" required id="prim" required>
+            <option selected>Choose a museum</option>
+            <% muzeji.forEach(function(muzej){ %>
+                <option><%= muzej.name%></option>
+              <% }) %>
+          </select>
+          <select class="form-control form-control-sm" type="search" name="name2" class="input" placeholder="End museum" required id="sec" required>
+            <option selected>Choose a museum</option>
+            <% muzeji.forEach(function(muzej){ %>
+                <option><%= muzej.name%></option>
+              <% }) %>
+          </select>
+      <!-- <input type="text" name="name1" placeholder="Start museum" required />
+      <input type="text" name="name2" placeholder="End museum" required/> -->
+      <input type="text" name="distance" placeholder="Distance" required/>
+      </div>
+      <br />
+      <input
+        type="submit"
+        value="Add distance"
+        class="btn btn-primary btn-sm"
+        id="taj"
+      />
+      <script>
+        var b = document.getElementById('taj');
+        var prim = document.getElementById('prim');
+        var sec = document.getElementById('sec');
+        prim.onclick = () => {
+        if(prim.value == sec.value) 
+        {
+          b.disabled = true;
+        }
+        else {
+          b.disabled = false;
+        }
+      }
+      sec.onclick = () => {
+        if(prim.value == sec.value) 
+        {
+          b.disabled = true;
+        }
+        else {
+          b.disabled = false;
+        }
+      }
+      </script>
+      </div>
+    </form>
+</div>
+    <% include ../views/partials/footer %>
+  </div>
+  </div>
+
+  <script>
+    var adminemail = "admin@gmail.com";
+    var adminpassword = "admin";
+    var f = document.getElementById("loginforma");
+    window.addEventListener("unload", function()
+    {
+    var count = parseInt(localStorage.getItem('counter') || 0);
+    localStorage.setItem('counter', ++count)
+    }, false);
+
+    if(localStorage.getItem('counter') == 1) {
+      document.getElementById("velikidiv").hidden = true;
+      var dgm = document.getElementById("adminbtn");
+      dgm.onclick = () => {
+        var email = document.getElementById("adminemail").value;
+        var pass = document.getElementById("adminpassword").value;
+        if ((email == adminemail) && (pass == adminpassword)) {
+          f.parentNode.removeChild(f);
+          document.getElementById("velikidiv").hidden = false;
+        }
+        else {
+          alert("Wrong password or email!");
+          document.getElementById("velikidiv").hidden = true;
+          localStorage.removeItem('counter');
+        }
+      }
+    }
+
+    if(localStorage.getItem('counter') > 1) {
+      f.parentNode.removeChild(f);
+    }
+
+    if (localStorage.getItem('counter') % 5 == 0) {
+      //alert('You refreshed a page');
+      console.log(localStorage.getItem('counter'));
+      localStorage.removeItem('counter');
+      console.log(localStorage.getItem('counter'));
+    }
+  </script>

@@ -1,0 +1,384 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
+<link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin=""
+    />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
+<script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-map.js?key=S8d7L47mdyAG5nHG09dUnSPJjreUVPeC"></script>
+<script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-routing.js?key=S8d7L47mdyAG5nHG09dUnSPJjreUVPeC"></script>
+<script src="https://api.mqcdn.com/sdk/place-search-js/v1.0.0/place-search.js"></script>
+<% include ../views/partials/header %>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>creARTivity</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+  </head>
+  <body>
+    <div id="navbarMenuHeroA" class="navbar-menu">
+      <nav class="navbar is-fixed-top" style="background-color: #00D1B2;">
+        <a class="navbar-item">
+          <img src="https://i.imgur.com/xPPWqCu.png" alt="Logo">
+        </a>
+        <div class="navbar-end">
+        <a class="navbar-item is-active" href="/">
+          Home
+        </a>
+        <a class="navbar-item" href="#">
+          About
+        </a>
+        <a class="navbar-item" href="#">
+          Constact us
+        </a>
+        <a class="navbar-item" href="/admin">
+          Admin
+        </a>
+        <span class="navbar-item">
+          <a class="button is-primary is-inverted" href="https://github.com/mirovicmila/creARTivity">
+            <span class="icon">
+              <i class="fa fa-github" aria-hidden="true"></i>
+            </span>
+            <span>Download</span>
+          </a>
+        </span>
+      </div>
+    </nav>
+    </div>
+    <section class="hero is-primary is-fullheight">
+      <!-- Hero head: will stick at the top -->
+         <!-- <div style="height: 200px; background-color:red"></div> -->
+      <!-- Hero content: will be in the middle -->
+      <div class="hero-body" style="height: 400px;">
+        <div class="container d-flex align-items-center flex-column">
+          <img src="https://i.imgur.com/SSwuZZs.png" class="w-25" />
+          <h1 class="display-1 text-center animate__repeat-2 animate__animated animate__tada">
+            Welcome to creARTivity!
+          </h1>
+          <h2 class="subtitle">
+          </h2>
+          <button class="is-large is-rounded button is-primary is-inverted is-outlined" onClick="document.getElementById('glavni').scrollIntoView();" ><i class="fa fa-angle-down" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    
+      <!-- Hero footer: will stick at the bottom -->
+      <div class="hero-foot">
+        <nav class="tabs is-boxed is-fullwidth">
+          <div class="container">
+            <ul>
+              <li class="is-active" onClick="document.getElementById('glavni').scrollIntoView();">
+                <a>Overview</a>
+              </li>
+              <li onClick="document.getElementById('glavni').scrollIntoView();">
+                <a>Museums</a>
+              </li>
+              <li onClick="document.getElementById('slike').scrollIntoView();">
+                <a>Art pieces</a>
+              </li>
+              <li onClick="document.getElementById('izlozbe').scrollIntoView();">
+                <a>Exhibits</a>
+              </li>
+              <li onClick="document.getElementById('find').scrollIntoView();">
+                <a>Find a path...</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </section>
+
+<link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/place-search-js/v1.0.0/place-search.css"/>
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+<br id="glavni"/>
+<br />
+<br />
+<br />
+<div class="container-lg container-fluid">
+  <div id="bririnotif" class="notification is-primary is-light w-50">
+    <button id="dugmenotif" class="delete"></button>
+    Hi there! Welcome to our <strong>creARTivity</strong> website! Here you can access a lot of different museums around the world and exhibitions in them, as well as some famous works of art. If you plan to visit several places at once, you can find the perfect routes between them right on <a onclick="document.getElementById('find').scrollIntoView();">this site</a>!
+  </div>
+  <script>
+    var elem = document.getElementById("bririnotif");
+    var dug = document.getElementById("dugmenotif");
+    dug.onclick = () => {
+      elem.parentNode.removeChild(elem);
+    }
+  </script>
+  <div class="d-inline-flex justify-content-around">
+    <h1 class="animate__animated animate__pulse animate__infinite display-1 align-self-center">Museums</h1>
+    <img src="https://i.imgur.com/Xvh4dA7.png" class="img-fluid w-50 p-3" alt="Responsive image">
+</div>
+<!-- <h1 class="animate__animated animate__bounce">An animated element</h1> -->
+<br/>
+<p class="lead text-secondary">
+  A museum is a non-profit, permanent institution in the service of society and its development, open to the public, which acquires, conserves, researches, communicates and exhibits the tangible and intangible heritage of humanity and its environment for the purposes of education, study and enjoyment.
+</p>
+
+<br/>
+
+<div class="row ">
+  <% muzeji.forEach(function(muzej){ %>
+    <div class="card mb-3 mx-auto" style="width: 18rem; ">
+      <div class="card-header text-light"><%= muzej.name %></div>
+      <div class="card-body d-flex flex-column">
+        <img class="card-img-top" src="<%=muzej.image%>" alt="Card image cap"/>
+        <p class="card-text"><%= muzej.address %></p>
+        <a href="/museum/<%=muzej.id%>" class="btn btn-sm btn-outline-light stretched-link">Visit <%= muzej.name %></a>
+      </div>
+    </div>
+    <% }) %>
+</div>
+<br id="slike"/>
+<br />
+<br />
+<br />
+<h1 class="display-2 align-self-center">Pieces</h1>
+<div class="row">
+  <% dela.forEach(function(delo){ %>
+    <div class="card card2 text-white border-light mb-3 mx-auto" style="width: 18rem;">
+      <div class="card-body">
+        <img
+          class="card-img-top"
+          src="<%=delo.image%>"
+          alt="Card image cap"
+        />
+        <h5 class="card-title"><%= delo.name %></h5>
+        <h6 class="card-subtitle mb-2 text-muted"><%= delo.author %></h6>
+        <a href="/piece/<%=delo.id%>" class="btn btn-sm stretched-link"></a>
+      </div>
+    </div>
+    <% }) %>
+</div>
+
+<br id="izlozbe"/>
+<br />
+<br />
+<br />
+<h1 class="display-2 align-self-center">Exhibits</h1>
+<br />
+<br />
+<div class="row tile" >
+  <% izlozbe.forEach(function(izlozba){ %>
+  <div class="row position-relative izlozbazasvetli">
+    <div class="col-md-6 mb-md-0 p-md-4 ">
+      <img src="<%=izlozba.image%>" class="w-50" alt="...">
+    </div>
+    <div class="col-md-6 position-static p-4 pl-md-0">
+      <h1 class="display-5"><%= izlozba.name %></h1>
+      <p class="text-light"><%= izlozba.description %></p>
+      <a href="/exhibit/<%=izlozba.id%>" class="text-light stretched-link"> </a>
+    </div>
+  </div>
+  <% }) %>
+</div>
+<br/>
+
+<br/>
+<br id="find"/>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<div class="d-flex flex-row">
+  <h1 class="display-3 align-self-center">Find a path between museums</h1>
+</div>
+<style>
+  #map {
+      width: 900px;
+      height:400px;
+  }
+</style>    
+<br/>
+
+<div class="formBlock" >
+  <form id="form">
+    <div class="d-flex flex-row">
+      <div class="align-self-center">
+        <i class="fa fa-chevron-down" aria-hidden="true"></i>
+      </div>
+      <select class="form-control form-control-sm" type="search" name="prviMuzej" class="input" id="prviMuzej" placeholder="Choose starting museum">
+        <option selected>Choose starting museum</option>
+        <% muzeji.forEach(function(muzej){ %>
+            <option><%= muzej.name%> : <%= muzej.address %></option>
+          <% }) %>
+      </select>
+       
+      <div class="align-self-center">
+        <i class="fa fa-exchange" aria-hidden="true"></i>
+      </div>
+       
+      <select class="form-control form-control-sm" type="search" name="drugiMuzej" class="input" id="drugiMuzej" placeholder="Choose end museum">
+        <option selected>Choose end museum</option>
+        <% muzeji.forEach(function(muzej){ %>
+            <option><%= muzej.name%> : <%= muzej.address %></option>
+          <% }) %>
+      </select>
+      <div class="align-self-center">
+        <i class="fa fa-chevron-down" aria-hidden="true"></i>
+      </div>
+    </div>
+    <br />
+    <div class="d-flex flex-row justify-content-center">
+      <button  type="submit" class="btn btn-info" id="btngetroute">Get Route</button>
+    </div>
+  </form>
+</div>
+<br />
+<br />
+<div id="map" class="w-100"></div>  
+</div>
+</body>
+</html>     
+<script>
+var map = L.map('map', {
+  //center: latLng,
+  layers: MQ.mapLayer(),
+  center: [ 48.208182356298806, 16.375101576566305],
+  //layers: L.mapquest.tileLayer('map'),
+  zoom: 14
+});
+</script>
+<script type="text/javascript">
+  function iscrtajPut(prviMuzej,drugiMuzej){
+  
+    //L.mapquest.key = 'xZkpUhDeKCi3xZfhJVuTc52uc7s6tjN9';   
+      var map = L.map('map', {
+        //center: latLng,
+        layers: MQ.mapLayer(),
+        center: [ 48.208182356298806, 16.375101576566305 ],
+        //layers: L.mapquest.tileLayer('map'),
+        zoom: 14
+      });
+      dir = MQ.routing.directions();
+
+dir.route({
+  locations: [
+  //'Belvedere Palace, Prinz Eugen-Straße, Vienna, Austria',
+  //'Albertina, Albertinaplatz, Vienna, Austria',
+  prviMuzej,
+  drugiMuzej
+  ]
+});
+CustomRouteLayer = MQ.Routing.RouteLayer.extend({
+                  createStartMarker: function (location, stopNumber) {
+                      var custom_icon;
+                      var marker;
+
+                      custom_icon = L.icon({
+                          iconUrl: 'https://www.mapquestapi.com/staticmap/geticon?uri=poi-red_1.png',
+                          iconSize: [20, 29],
+                          iconAnchor: [10, 29],
+                          popupAnchor: [0, -29]
+                      });
+
+                      marker = L.marker(location.latLng, {icon: custom_icon}).addTo(map);
+
+                      return marker;
+                  },
+
+                  createEndMarker: function (location, stopNumber) {
+                      var custom_icon;
+                      var marker;
+
+                      custom_icon = L.icon({
+                          iconUrl: 'https://www.mapquestapi.com/staticmap/geticon?uri=poi-blue_1.png',
+                          iconSize: [20, 29],
+                          iconAnchor: [10, 29],
+                          popupAnchor: [0, -29]
+                      });
+
+                      marker = L.marker(location.latLng, {icon: custom_icon}).addTo(map);
+
+                      return marker;
+                  }
+              });
+
+              map.addLayer(new CustomRouteLayer({
+                  directions: dir,
+                  fitBounds: true
+              }));
+          
+    }
+</script> 
+<script>
+  function submitForm(event) {
+    event.preventDefault();
+
+    // delete current map layer
+    map.remove();
+
+    // getting form data
+    prviMuzej = document.getElementById("prviMuzej").value;
+    drugiMuzej = document.getElementById("drugiMuzej").value;
+
+    // run directions function
+    iscrtajPut(prviMuzej, drugiMuzej);
+
+    // reset form
+    document.getElementById("form").reset();
+}
+
+// asign the form to form variable
+const form = document.getElementById('form');
+
+// call the submitForm() function when submitting the form
+form.addEventListener('submit', submitForm);
+</script>
+<script>
+  console.log("url je ovakakv: ", document.location.href);
+  if((document.location.href).indexOf("?") > -1)
+  {
+    console.log("sadrzi ?");
+    document.location.href = 'http://localhost:8080';
+  }
+  else {
+    console.log("ne sadrzi ?");    
+  }
+</script>
+
+<style>
+  .card{
+    background-color: #00D1B2;
+  }
+  .card:hover {
+    background-color: #36f1cd;
+    opacity: 0.7;
+  }
+  .card2 {
+    background-color: #D3A9AB;
+  }
+
+  .card2:hover {
+    background-color: E4CED0;
+  }
+  .izlozbazasvetli {
+    background-color: #55917F;
+  }
+  .izlozbazasvetli:hover {
+    background-color: #6BAB90;
+  }
+</style>
+
+<% include ../views/partials/footer %>

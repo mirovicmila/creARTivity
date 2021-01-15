@@ -1,0 +1,26 @@
+{
+  "name": "creartivity",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "animate.css": "^4.1.1",
+    "body-parser": "*",
+    "bulma": "^0.9.1",
+    "cookie-parser": "*",
+    "ejs": "^2.4.2",
+    "express": "*",
+    "hover.css": "^2.3.2",
+    "leaflet": "^1.7.1",
+    "mdbootstrap": "^4.19.2",
+    "morgan": "*",
+    "neo4j-driver": "^4.2.1",
+    "uniqid": "^5.2.0",
+    "uuid": "^8.3.2"
+  },
+  "author": "",
+  "license": "ISC"
+}
