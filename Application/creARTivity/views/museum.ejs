@@ -27,9 +27,12 @@
 <div class="container container-fluid">
 
 <h3 class="display-6">Art located in this museum</h3>
+<% if(nizDela.length == 0) { %>
+  <p class="lead">There are no pieces at the moment...</p>
+<% } %>
 <div class="row">
   <% nizDela.forEach(function(piece){ %>
-  <div class="card m-3 mx-auto" style="width: 18rem; ">
+  <div class="card2 card m-3 mx-auto" style="width: 18rem; ">
     <div class="card-header text-light"><%= piece.name %></div>
     <div class="card-body d-flex flex-column">
       <img class="card-img-top" src="<%=piece.image%>" alt="Card image cap"/>
@@ -41,9 +44,12 @@
 <br/>
 
   <h3 class="display-6">Exhibits taking place in this museum</h3>
+  <% if(nizIzlozbiUMuzeju.length == 0) {%>
+    <p class="lead p-4">There are no exhibits at the moment...</p>
+  <% } %>
   <div class="row">
     <% nizIzlozbiUMuzeju.forEach(function(izlozba){ %>
-    <div class="card m-3 mx-auto" style="width: 18rem; ">
+    <div class="card card3 m-3 mx-auto" style="width: 18rem; ">
       <div class="card-header text-light"><%= izlozba.name %></div>
       <div class="card-body d-flex flex-column">
         <img class="card-img-top" src="<%=izlozba.image%>" alt="Card image cap"/>
@@ -55,7 +61,10 @@
   <br/>
 
   <div clas="d-flex flex-column align-items-center">
-  <h3 class="display-6">Take a closer look...</h3>
+  <% if (video) { %>
+    <h3 class="display-6">Take a closer look...</h3>
+  <% } %>
+
   <br />
   <div class="embed-responsive">
     <iframe class="w-100 h-50 embed-responsive-item" src="<%= video%>" allowfullscreen></iframe>
@@ -94,8 +103,11 @@
 <h3 class="display-6">Museums that are near by</h3>
 <br />
   <div class="row">
+    <% if (nizBliskih.length == 0) { %>
+      <p class="p-4 lead">There are no museums in the area...</p>
+    <% }%>
     <% nizBliskih.forEach(function(bliski){ %>
-    <div class="card mb-3 mx-auto" style="width: 18rem; ">
+    <div class="card card4 mb-3 mx-auto" style="width: 18rem; ">
       <div class="card-header text-light"><%= bliski.name %></div>
       <div class="card-body d-flex flex-column">
         <img class="card-img-top" src="<%=bliski.image%>" alt="Card image cap"/>
@@ -260,11 +272,25 @@ console.log("p", p);
 </div>
 
 <style>
-  .card{
+  .card2{
     background-color: #00D1B2;
   }
-  .card:hover {
+  .card2:hover {
     background-color: #36f1cd;
+    opacity: 0.7;
+  }
+  .card3{
+    background-color: #dd614a;
+  }
+  .card3:hover {
+    background-color: #f48668;
+    opacity: 0.7;
+  }
+  .card4{
+    background-color: #4e78aa;
+  }
+  .card4:hover {
+    background-color: #3f96dd;
     opacity: 0.7;
   }
   </style>

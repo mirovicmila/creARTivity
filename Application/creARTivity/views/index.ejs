@@ -152,7 +152,11 @@
 <br />
 <br />
 <br />
-<h1 class="display-2 align-self-center">Pieces</h1>
+<div class="d-flex flex-row justify-content-xxl-around">
+  <img src="https://i.imgur.com/jJrpr8q.png" class="" style="width: 20%; height: 20%" />
+  <h1 class="display-1 align-self-center animate__animated animate__pulse animate__infinite">Pieces</h1>
+</div>
+<br/>
 <div class="row">
   <% dela.forEach(function(delo){ %>
     <div class="card card2 text-white border-light mb-3 mx-auto" style="width: 18rem;">
@@ -177,9 +181,11 @@
 <h1 class="display-2 align-self-center">Exhibits</h1>
 <br />
 <br />
+
+
 <div class="row tile" >
   <% izlozbe.forEach(function(izlozba){ %>
-  <div class="row position-relative izlozbazasvetli">
+  <div class="row position-relative izlozbazasvetli mb-2">
     <div class="col-md-6 mb-md-0 p-md-4 ">
       <img src="<%=izlozba.image%>" class="w-50" alt="...">
     </div>
