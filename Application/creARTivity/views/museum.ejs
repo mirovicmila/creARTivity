@@ -64,12 +64,15 @@
   <% if (video) { %>
     <h3 class="display-6">Take a closer look...</h3>
   <% } %>
-
   <br />
+  <% console.log("video", video); %>
+  <% if (video.includes("http://") || video.includes("https://")) { %>
   <div class="embed-responsive">
     <iframe class="w-100 h-50 embed-responsive-item" src="<%= video%>" allowfullscreen></iframe>
   </div>
   </div>
+  <% } %>
+
   <br />
   <h3 class="display-6">View it on a map</h3>
 <style>
