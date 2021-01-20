@@ -107,23 +107,23 @@
   </div>
   </div>
   <script>
-    // var login = document.getElementById("loginforma");
-    // var update = document.getElementById("updatedelete");
-    // update.hidden = true;
+    var login = document.getElementById("loginforma");
+    var update = document.getElementById("updatedelete");
+    update.hidden = true;
 
-    // var btn = document.getElementById("logindugme");
+    var btn = document.getElementById("logindugme");
 
-    // btn.onclick = () => {
-    //   if ((document.getElementById("adminemail").value == "admin@gmail.com" ) && (document.getElementById("adminpassword").value == "admin"))
-    //   {
-    //     update.hidden= false;
-    //     login.parentNode.removeChild(login);
-    //   }
-    //   else
-    //   {
-    //     alert("Wrong password or email address!");
-    //   }
-    // }
+    btn.onclick = () => {
+      if ((document.getElementById("adminemail").value == "admin@gmail.com" ) && (document.getElementById("adminpassword").value == "admin"))
+      {
+        update.hidden= false;
+        login.parentNode.removeChild(login);
+      }
+      else
+      {
+        alert("Wrong password or email address!");
+      }
+    }
   </script>
 
 <script>
