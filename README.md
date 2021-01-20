@@ -7,3 +7,4 @@ Studentski projekat iz predmeta *Napredne baze podataka*. Bazira se na primeni i
 3. U terminalu uneti **npm install**, pa zatim **node app** i aplikacija je pokrenuta (druga opcija za pokretanje je *nodemon* koji se instalira pomocu komande *npm install nodemon -g*).
 > Prilikom *editovanja ili brisanja* potrebno je uneti administratorski email i password (**email**: *admin@gmail.com*, **password**: *admin*);
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+> Zbog koriscenja automatskih generatora id-eva potrebno je u Neo4j aplikaciji instalirati **APOC** plugin kako bi uuid radio adekvatno.
