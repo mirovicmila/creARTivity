@@ -430,7 +430,7 @@ app.post("/piece/edit", function (req, res) {
       //session.close();
     })
     .catch(function (error) {
-      console.log(error);
+      console.log(error); 
     });
 });
 //delete dela
@@ -446,8 +446,8 @@ app.delete("/piece/:id", function(req,res){
     )
     .then(function (result) {
      console.log("ulazimu then za delete....");
-      res.redirect("../../");
-      console.log("ispod redirect za delete....");
+      //res.redirect("/admin");
+      //console.log("ispod redirect za delete....");
       //session.close();
     })
     .catch(function (error) {
@@ -455,6 +455,7 @@ app.delete("/piece/:id", function(req,res){
     });
   
 });
+
 //vraca izlozbu
 app.get("/exhibit/:id", function (req, res) {
   var id = req.params.id;
@@ -550,7 +551,7 @@ app.delete("/exhibit/:id", function(req,res){
    )
    .then(function (result) {
     console.log("ulazimu then za delete....");
-     res.redirect("../../");
+     //res.redirect("../../");
      console.log("ispod redirect za delete....");
      //session.close();
    })

@@ -2,7 +2,9 @@
 
 <div class="row position-relative izlozbazasvetli">
   <div class="col-md-6 ">
+    <% if (image.includes("http://") || image.includes("https://")) { %>
     <img src="<%=image%>" class="w-100" alt="...">
+    <% } %>
   </div>
   <div class="col-md-6 position-static p-4 pl-md-0">
     <h3 class="display-1"><%= name%></h3>
@@ -101,11 +103,11 @@
   var idd = document.getElementById("idid").dataset.test;
   console.log("idid:", idd);
   deleteButton.addEventListener('click', _ => {
-// fetch('/piece/'+ idd, {
-//   method: 'delete',
-//   mode: 'cors',
-//   redirect: 'follow'
-// });
+fetch('/exhibit/'+ idd, {
+  method: 'delete',
+  mode: 'cors',
+  redirect: 'follow'
+});
 var p = confirm('Are you sure you want to delete this?');
 console.log("p", p);
  if (p == true) 

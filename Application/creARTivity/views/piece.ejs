@@ -2,7 +2,9 @@
 
 <div class="row position-relative izlozbazasvetli">
   <div class="col-md-6 ">
+    <% if (image.includes("http://") || image.includes("https://")) { %>
     <img src="<%=image%>" class="w-100" alt="...">
+    <% } %>
   </div>
   <div class="col-md-6 position-static p-4 pl-md-0">
     <h3 class="display-5"><%= name%></h3>
@@ -27,12 +29,14 @@
       on <a href="https://sketchfab.com?utm_medium=embed&utm_source=website&utm_campaign=share-popup" target="_blank" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a>
   </p>
 </div> -->
+<% if (link.includes("http://") || link.includes("https://")) { %>
 <h3 class="m-4 p-4 lead">Take a closer look at a <%= type%></h3>
 <div class="sketchfab-embed-wrapper d-flex justify-content-center">
   <iframe title="A 3D model" width="640" height="480" src="<%= link%>" frameborder="0" allow="autoplay; fullscreen; vr" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
   <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;">
   </p>
 </div>
+<% } %>
 <br/>
 <div class="card m-4 p-4 w-50 bg-light" id="loginforma">
   <p class="lead">To update or remove a piece you need autorization... </p>
@@ -103,23 +107,23 @@
   </div>
   </div>
   <script>
-    var login = document.getElementById("loginforma");
-    var update = document.getElementById("updatedelete");
-    update.hidden = true;
+    // var login = document.getElementById("loginforma");
+    // var update = document.getElementById("updatedelete");
+    // update.hidden = true;
 
-    var btn = document.getElementById("logindugme");
+    // var btn = document.getElementById("logindugme");
 
-    btn.onclick = () => {
-      if ((document.getElementById("adminemail").value == "admin@gmail.com" ) && (document.getElementById("adminpassword").value == "admin"))
-      {
-        update.hidden= false;
-        login.parentNode.removeChild(login);
-      }
-      else
-      {
-        alert("Wrong password or email address!");
-      }
-    }
+    // btn.onclick = () => {
+    //   if ((document.getElementById("adminemail").value == "admin@gmail.com" ) && (document.getElementById("adminpassword").value == "admin"))
+    //   {
+    //     update.hidden= false;
+    //     login.parentNode.removeChild(login);
+    //   }
+    //   else
+    //   {
+    //     alert("Wrong password or email address!");
+    //   }
+    // }
   </script>
 
 <script>
@@ -129,11 +133,11 @@ console.log("delete btn: ",deleteButton);
 var idd = document.getElementById("idid").dataset.test;
 console.log("idid:", idd);
 deleteButton.addEventListener('click', _ => {
-// fetch('/piece/'+ idd, {
-//   method: 'delete',
-//   mode: 'cors',
-//   redirect: 'follow'
-// });
+fetch('/piece/'+ idd, {
+  method: 'delete',
+  mode: 'cors',
+  redirect: 'follow'
+});
 var p = confirm('Are you sure you want to delete this?');
 console.log("p", p);
  if (p == true) 
@@ -152,7 +156,7 @@ console.log("p", p);
     txt = "You pressed Cancel!"; 
     console.log(txt); 
   }
-});
+ });
 
 </script>
 <% include ../views/partials/footer %>
